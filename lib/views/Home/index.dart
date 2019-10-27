@@ -14,13 +14,15 @@ class _HomePageState extends State<HomePage> {
  
   @override
   void initState() {
-    print(123);
-    getRepos().then((repos){
-       print(repos);
-      repos = repos;
-     
-    });
+
+  
     super.initState();
+    getRepos().then((repos){
+      print('请求成功');
+      setState(() {
+        repos = repos;
+      });
+    });
   }
   @override
   Widget build(BuildContext context) {
@@ -87,6 +89,7 @@ Widget _headerImg(){
   );
 }
 Widget _bodyContext(repos){
+  print('我接受到的数据');
   print(repos);
   return Container(
     child:ListView(
