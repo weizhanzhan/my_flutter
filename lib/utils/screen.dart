@@ -1,6 +1,6 @@
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-setScreen({String type,double value,contxt}){
+setScreen({String type, double value, contxt}) {
   switch (type) {
     case 'w':
       return ScreenUtil.getInstance().setWidth(value);
