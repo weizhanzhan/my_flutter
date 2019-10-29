@@ -9,13 +9,14 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List _repos = [];
+  Object _weather;
 
   @override
   void initState() {
     super.initState();
     _getReposData();
+    _getWeatherData();
   }
-
   _getReposData() {
     getRepos().then((repos) {
       setState(() {
@@ -23,9 +24,16 @@ class _HomePageState extends State<HomePage> {
       });
     });
   }
-
+  _getWeatherData(){
+    getWeather().then((weather){
+      setState(() {
+        _weather = weather.data;
+      });
+    });
+  }
   @override
   Widget build(BuildContext context) {
+    print(_weather == null);
     return Scaffold(
         body: SafeArea(
             child: SingleChildScrollView(
@@ -33,23 +41,18 @@ class _HomePageState extends State<HomePage> {
         children: <Widget>[
           _headerTitle(),
           _headerImg(),
+          _weatherBody(_weather),
+          _applicationGrid(),
           _repos.length != 0 ? _bodyContext(_repos) : Text('空数组')
+
         ],
       ),
     )));
   }
 }
-
+// 头部标题
 Widget _headerTitle() {
   return Container(
-    decoration: BoxDecoration(
-        // border: new Border(
-        //   bottom: BorderSide(
-        //     color: Colors.blueAccent,
-        //     width: 0
-        //   )
-        // ), // 边色与边宽度
-        ),
     padding: EdgeInsets.fromLTRB(24, 12, 24, 12),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -71,7 +74,7 @@ Widget _headerTitle() {
     ),
   );
 }
-
+// 头部banner
 Widget _headerImg() {
   return Container(
       margin: EdgeInsets.fromLTRB(24, 12, 24, 6),
@@ -82,10 +85,83 @@ Widget _headerImg() {
         borderRadius: BorderRadius.circular(10),
       ));
 }
-
+// 天气
+Widget _weatherBody(weather){
+  if(weather == null){
+    return Container(
+      margin:  EdgeInsets.fromLTRB(24, 12, 24, 0),
+      padding: EdgeInsets.only(bottom: 16.0),
+      child:  Text('正在加载...'),
+    );
+  }
+  var now = weather['data']['forecast'][0];
+  return Container(
+    decoration: BoxDecoration(
+      border: Border(bottom: BorderSide(
+        color: Colors.grey,
+        width: 0.2
+      ))
+    ),
+    margin:  EdgeInsets.fromLTRB(24, 12, 24, 0),
+    padding: EdgeInsets.only(bottom: 20.0),
+    child: Row(
+      children: <Widget>[
+        Icon(Icons.library_books,size: 20,),
+        Text('  ${now['date']} ${weather['data']['city']}   ${now['type']}   ${now['high']}   ${now['low']}'),
+      ]
+    )
+  );
+}
+// 应用表格
+Widget _applicationGrid(){
+  return Container(
+    padding: EdgeInsets.only(left: 24,right: 24,top: 20),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Container(     
+          padding: EdgeInsets.only(bottom: 20),
+          child: Text(
+            '功能应用',
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold
+            ),
+            textAlign: TextAlign.left
+          )
+        ),
+        GridView.builder(
+          physics: NeverScrollableScrollPhysics(), //去除内部滚动
+          itemCount: 16,
+          shrinkWrap: true,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            //横轴元素个数
+            crossAxisCount: 4,
+            //纵轴间距
+            mainAxisSpacing: 20.0,
+            //横轴间距
+            crossAxisSpacing: 10.0,
+            //子组件宽高长度比例
+            childAspectRatio: 1.0
+          ),
+          itemBuilder: (BuildContext context,int index){
+            return Container(
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.grey,
+                  width: 1
+                )
+              ),
+              child: Text('$index'),
+            );
+          },
+        )
+      ],
+    )
+  );
+}
+// 数据列表
 Widget _bodyContext(repos) {
-  print('我接受到的数据');
-  print(repos);
   return Container(
       padding: EdgeInsets.fromLTRB(16, 0, 16, 0),
       child: ListView.builder(
@@ -94,7 +170,6 @@ Widget _bodyContext(repos) {
         itemCount: repos.length,
         // itemExtent: 50.0,
         itemBuilder: (BuildContext context, int index) {
-          print(repos[index]['name']);
           return ListTile(
             title: Text(repos[index]['name']),
             subtitle: Text(
@@ -106,56 +181,5 @@ Widget _bodyContext(repos) {
           );
         },
       )
-      //     child: ListView(
-      //   physics: NeverScrollableScrollPhysics(), //去除内部滚动
-      //   shrinkWrap: true,
-      //   children: <Widget>[
-      //     ListTile(
-      //       title: Text('Flutter Image组件'),
-      //       subtitle: Text(
-      //         '目录 参数详解 代码示例 效果图 完整代码 使用资源图片前必做两个步骤： 1、在根目录下创建子目录，子目录中创建2.0x和3.0x（也可以创建4.0x、5.0x... 但是2.0和3.0是必须的）目录，在对应目录中添加对应分辨率图片。（图1） 2、打开pubspec.yaml文件',
-      //         maxLines: 2,
-      //         overflow: TextOverflow.ellipsis,
-      //       ),
-      //       leading: Icon(Icons.settings),
-      //     ),
-      //     ListTile(
-      //       title: Text('Flutter Container 组件'),
-      //       subtitle: Text(
-      //         '目录 参数详解 代码示例 效果图 完整代码 Container 官网简介：一个便利的小部件，结合了常见的绘画，定位和大小调整小部件。 其实就是一个容器组件，既然是容器，那么，就一定可以装很多东西，而Container装的东西就是Flutter 其他组件。 参数详解 属性 说明',
-      //         maxLines: 2,
-      //         overflow: TextOverflow.ellipsis,
-      //       ),
-      //       leading: Icon(Icons.settings),
-      //     ),
-      //   ],
-      // ));
-      );
+    );
 }
-
-// class HomePage extends StatefulWidget {
-
-//   List repos = new List();
-
-//   @override
-//   Widget build(BuildContext context) {
-
-//     getRepos().then((repos){
-//       print(repos);
-//     });
-
-//     return Scaffold(
-//       body: SafeArea(
-//         child: SingleChildScrollView(
-//           child: Column(
-//             children: <Widget>[
-//               _headerTitle(),
-//               _headerImg(),
-//               _bodyContext()
-//             ],
-//           ),
-//         )
-//       )
-//     );
-//   }
-// }
