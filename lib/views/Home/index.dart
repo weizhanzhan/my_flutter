@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_flutter/utils/request.dart';
 import 'package:my_flutter/utils/screen.dart';
+import 'package:flutter_swiper/flutter_swiper.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -54,7 +55,7 @@ class _HomePageState extends State<HomePage> {
           _headerImg(),
           _weatherBody(_weather, _weatherLoading),
           _applicationGrid(),
-          _repos.length != 0 ? _bodyContext(_repos) : Text('空数组')
+          // _repos.length != 0 ? _bodyContext(_repos) : Text('空数组')
         ],
       ),
     )));
@@ -64,21 +65,21 @@ class _HomePageState extends State<HomePage> {
 // 头部标题
 Widget _headerTitle() {
   return Container(
-    padding: EdgeInsets.fromLTRB(24, 12, 24, 12),
+    padding: EdgeInsets.fromLTRB(24, 12, 24, 6),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         Text(
-          'Hello,Welcome !',
+          'Learn and live!',
           style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
         ),
         Row(
           children: <Widget>[
-            Container(
-              padding: EdgeInsets.only(right: 10),
-              child: Icon(Icons.add, size: 30),
-            ),
-            Icon(Icons.description, size: 30)
+            // Container(
+            //   padding: EdgeInsets.only(right: 10),
+            //   child: Icon(Icons.add, size: 30),
+            // ),
+            Icon(IconData(0xe70a, fontFamily: 'iconfont'), size: 30)
           ],
         )
       ],
@@ -88,14 +89,36 @@ Widget _headerTitle() {
 
 // 头部banner
 Widget _headerImg() {
+  var imgs = [
+    'assets/img/banner1.jpg',
+    'assets/img/banner3.jpg',
+    'assets/img/banner4.jpg',
+    'assets/img/banner5.jpg',
+  ];
   return Container(
-      margin: EdgeInsets.fromLTRB(24, 12, 24, 6),
-      width: double.infinity,
-      height: setScreen(type: 'h', value: 240),
-      child: ClipRRect(
-        child: Image.asset('assets/img/banner.jpg', fit: BoxFit.cover),
-        borderRadius: BorderRadius.circular(10),
-      ));
+    margin: EdgeInsets.fromLTRB(24, 12, 24, 6),
+    width: double.infinity,
+    height: setScreen(type: 'h', value: 240),
+    child: new Swiper(
+      itemBuilder: (BuildContext context, int index) {
+        // return new Image.asset(
+        //   imgs[index],
+        //   fit: BoxFit.fill,
+        // );
+        return ClipRRect(
+          child: Image.asset(imgs[index], fit: BoxFit.cover),
+          borderRadius: BorderRadius.circular(8),
+        );
+      },
+      itemCount: imgs.length,
+      pagination: new SwiperPagination(),
+      // control: new SwiperControl(),
+    ),
+  );
+  // child: ClipRRect(
+  //   child: Image.asset('assets/img/banner1.jpg', fit: BoxFit.cover),
+  //   borderRadius: BorderRadius.circular(8),
+  // ));
 }
 
 // 天气
@@ -122,7 +145,7 @@ Widget _weatherBody(weather, loading) {
       padding: EdgeInsets.only(bottom: 20.0),
       child: Row(children: <Widget>[
         Icon(
-          Icons.library_books,
+          IconData(0xe7db, fontFamily: 'iconfont'),
           size: 20,
         ),
         Text(
@@ -132,6 +155,78 @@ Widget _weatherBody(weather, loading) {
 
 // 应用表格
 Widget _applicationGrid() {
+  var applications = [
+    {
+      'name': 'github',
+      'icon': IconData(0xe885, fontFamily: 'iconfont'),
+      'color': Colors.orange
+    },
+    {
+      'name': 'blog',
+      'icon': IconData(0xe8e8, fontFamily: 'iconfont'),
+      'color': Colors.green
+    },
+    {
+      'name': '快递查询',
+      'icon': IconData(0xe603, fontFamily: 'iconfont'),
+      'color': Colors.blue
+    },
+    {
+      'name': '音乐排行榜',
+      'icon': IconData(0xe600, fontFamily: 'iconfont'),
+      'color': Colors.redAccent
+    },
+    {
+      'name': '图片欣赏',
+      'icon': IconData(0xe716, fontFamily: 'iconfont'),
+      'color': Colors.blue
+    },
+    {
+      'name': '实时段子',
+      'icon': IconData(0xe607, fontFamily: 'iconfont'),
+      'color': Colors.orange
+    },
+    {
+      'name': '身份证识别',
+      'icon': IconData(0xe605, fontFamily: 'iconfont'),
+      'color': Colors.green
+    },
+    {
+      'name': 'Map',
+      'icon': IconData(0xe60a, fontFamily: 'iconfont'),
+      'color': Colors.orange
+    },
+    {
+      'name': '自定义',
+      'icon': IconData(0xe67e, fontFamily: 'iconfont'),
+      'color': Colors.red
+    },
+    {
+      'name': '扫一扫',
+      'icon': IconData(0xe60d, fontFamily: 'iconfont'),
+      'color': Colors.green
+    },
+    {
+      'name': '更多应用',
+      'icon': IconData(0xe792, fontFamily: 'iconfont'),
+      'color': Colors.blue
+    },
+    // {
+    //   'name': '音乐排行榜',
+    //   'icon': IconData(0xe600, fontFamily: 'iconfont'),
+    //   'color': Colors.redAccent
+    // },
+    // {
+    //   'name': '音乐排行榜',
+    //   'icon': IconData(0xe600, fontFamily: 'iconfont'),
+    //   'color': Colors.redAccent
+    // },
+    // {
+    //   'name': '音乐排行榜',
+    //   'icon': IconData(0xe600, fontFamily: 'iconfont'),
+    //   'color': Colors.redAccent
+    // }
+  ];
   return Container(
       padding: EdgeInsets.only(left: 24, right: 24, top: 20),
       child: Column(
@@ -144,7 +239,7 @@ Widget _applicationGrid() {
                   textAlign: TextAlign.left)),
           GridView.builder(
             physics: NeverScrollableScrollPhysics(), //去除内部滚动
-            itemCount: 16,
+            itemCount: applications.length,
             shrinkWrap: true,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 //横轴元素个数
@@ -159,7 +254,7 @@ Widget _applicationGrid() {
               return Container(
                 decoration: BoxDecoration(
                     border: Border.all(color: Colors.white, width: 1)),
-                child: _applicationItem(index),
+                child: _applicationItem(applications[index]),
               );
             },
           )
@@ -167,7 +262,7 @@ Widget _applicationGrid() {
       ));
 }
 
-Widget _applicationItem(index) {
+Widget _applicationItem(item) {
   return Container(
     child: Column(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -176,17 +271,17 @@ Widget _applicationItem(index) {
           borderRadius: BorderRadius.circular(10),
           child: Container(
             child: Icon(
-              Icons.local_florist,
+              item['icon'],
               color: Colors.white,
               size: setScreen(type: 'size', value: 50),
             ),
-            color: Colors.orange,
+            color: item['color'],
             width: setScreen(type: 'w', value: 100.0),
             height: setScreen(type: 'h', value: 100.0),
           ),
         ),
         Container(
-          child: Text('模块$index'),
+          child: Text('${item['name']}'),
         )
       ],
     ),
