@@ -43,6 +43,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "3.0.3"
+  fish_redux:
+    dependency: "direct main"
+    description:
+      name: fish_redux
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.2.8"
   fluro:
     dependency: "direct main"
     description:

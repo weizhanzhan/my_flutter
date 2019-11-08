@@ -129,6 +129,7 @@ class WeatherBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(weatherInfo);
     if (loading) {
       return Container(
         margin: EdgeInsets.fromLTRB(24, 12, 24, 0),

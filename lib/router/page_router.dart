@@ -6,7 +6,7 @@ class PageRouter {
   static setupRoutes() {
     pageRoutes.forEach((path, handler) {
       router.define(path,
-          handler: handler, transitionType: TransitionType.inFromRight);
+          handler: handler, transitionType: TransitionType.fadeIn);
     });
   }
 }
