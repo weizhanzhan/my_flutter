@@ -132,24 +132,24 @@ class WeatherBox extends StatelessWidget {
     print(weatherInfo);
     if (loading) {
       return Container(
-        margin: EdgeInsets.fromLTRB(24, 12, 24, 0),
-        padding: EdgeInsets.only(bottom: 16.0),
-        child: Text('ε=( o｀ω′)ノ 正在加载...'),
+        // margin: EdgeInsets.fromLTRB(24, 12, 24, 0),
+        padding: EdgeInsets.only(top: 10.0),
+        child: Text('ε=( o｀ω′)ノ 正在加载...',  style: TextStyle(fontSize: setScreen(type: 'size', value: 18))),
       );
     }
     if (weatherInfo == null) {
       return Container(
-        margin: EdgeInsets.fromLTRB(24, 12, 24, 0),
-        padding: EdgeInsets.only(bottom: 16.0),
-        child: Text('/(ㄒoㄒ)/~~ 暂无数据...'),
+        // margin: EdgeInsets.fromLTRB(24, 12, 24, 0),
+        padding: EdgeInsets.only(top: 10.0),
+        child: Text('/(ㄒoㄒ)/~~ 暂无数据...',  style: TextStyle(fontSize: setScreen(type: 'size', value: 18))),
       );
     }
     var now = weatherInfo['data']['forecast'][0];
     return Container(
         decoration: BoxDecoration(
             border: Border(bottom: BorderSide(color: Colors.grey, width: 0.2))),
-        margin: EdgeInsets.fromLTRB(24, 12, 24, 0),
-        padding: EdgeInsets.only(bottom: 20.0),
+        // margin: EdgeInsets.fromLTRB(24, 12, 24, 0),
+         padding: EdgeInsets.only(top: 10.0),
         child: Row(children: <Widget>[
           Icon(
             IconData(0xe7db, fontFamily: 'iconfont'),
@@ -225,7 +225,7 @@ class ApplicationGrid extends StatelessWidget {
       },
     ];
     return Container(
-        padding: EdgeInsets.only(left: 24, right: 24, top: 20),
+        padding: EdgeInsets.only(left: 24, right: 24, top: 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
