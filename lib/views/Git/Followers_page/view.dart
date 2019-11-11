@@ -4,20 +4,17 @@ import 'package:my_flutter/router/page_router.dart';
 import 'action.dart';
 import 'state.dart';
 
-Widget buildView(FollowersState state, Dispatch dispatch, ViewService viewService) {
+Widget buildView(
+    FollowersState state, Dispatch dispatch, ViewService viewService) {
   return Scaffold(
-    body: SafeArea(
-      child: Container(
+      body: SafeArea(
+    child: Container(
         child: MaterialButton(
-          child: Text('hello'),
-          onPressed: (){
-            print('tetet');
-            dispatch(FollowersActionCreator.onBtnClick());
-            // PageRouter.router.pop(context);
-          },
-        )
-      ),
-    )
-  );
+      child: Text('hello'),
+      onPressed: () {
+        dispatch(FollowersActionCreator.onBtnClick());
+        // PageRouter.router.pop(context);
+      },
+    )),
+  ));
 }
-

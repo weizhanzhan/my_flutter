@@ -3,14 +3,13 @@ import 'package:flutter/material.dart';
 
 import 'action.dart';
 import 'state.dart';
-//  
-Widget buildView(FollowerListState state, Dispatch dispatch, ViewService viewService) {
+
+//
+Widget buildView(
+    FollowerListState state, Dispatch dispatch, ViewService viewService) {
   return Container(
-    child:MaterialButton(
-      child: Text('hello'),
-      onPressed: (){
-        print('tetet');
-      },
-    )
-  );
+      child: MaterialButton(
+    child: Text('hello'),
+    onPressed: () {},
+  ));
 }

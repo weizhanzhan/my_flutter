@@ -8,15 +8,12 @@ import 'view.dart';
 class FollowersPage extends Page<FollowersState, Map<String, dynamic>> {
   FollowersPage()
       : super(
-            initState: initState,
-            effect: buildEffect(),
-            reducer: buildReducer(),
-            view: buildView,
-            dependencies: Dependencies<FollowersState>(
-                adapter: null,
-                slots: <String, Dependent<FollowersState>>{
-                }),
-            middleware: <Middleware<FollowersState>>[
-            ],);
-
+          initState: initState,
+          effect: buildEffect(),
+          reducer: buildReducer(),
+          view: buildView,
+          dependencies: Dependencies<FollowersState>(
+              adapter: null, slots: <String, Dependent<FollowersState>>{}),
+          middleware: <Middleware<FollowersState>>[],
+        );
 }
