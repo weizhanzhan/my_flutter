@@ -1,9 +1,9 @@
 import 'package:fish_redux/fish_redux.dart';
 
 class LayoutState implements Cloneable<LayoutState> {
-  int current;
+  int current ;
 
-  LayoutState({this.current});
+  LayoutState({this.current = 0});
 
   @override
   LayoutState clone() {
@@ -12,5 +12,6 @@ class LayoutState implements Cloneable<LayoutState> {
 }
 
 LayoutState initState(Map<String, dynamic> args) {
+
   return LayoutState();
 }

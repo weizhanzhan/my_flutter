@@ -4,12 +4,10 @@ import 'package:flutter/material.dart';
 import 'action.dart';
 import 'state.dart';
 
-Widget buildView(HomeState state, Dispatch dispatch, ViewService viewService) {
+Widget buildView(AccountState state, Dispatch dispatch, ViewService viewService) {
   return Scaffold(
     body: SafeArea(
-      child: Container(
-        child: Text('Home'),
-      ),
+      child: Text('hello 我是个人中心'),
     ),
   );
 }
