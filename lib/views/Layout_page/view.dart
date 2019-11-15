@@ -14,7 +14,6 @@ Widget buildView(
     body: pages[state.current],
     bottomNavigationBar: BottomNavigationBar(
       onTap: (index) {
-        print(index);
         dispatch(LayoutActionCreator.onChangeCurrentIndex(index));
       },
       currentIndex: state.current,

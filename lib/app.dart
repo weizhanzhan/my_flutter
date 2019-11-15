@@ -14,14 +14,12 @@ Widget createApp() {
   );
 
   return MaterialApp(
-    title: 'Flutter Demo',
+    title: 'my_flutter',
     debugShowCheckedModeBanner: false, //去除debug标签
     theme: ThemeData(
       primarySwatch: Colors.blue,
     ),
-    // home: Layout(),
-    // onGenerateRoute: PageRouter.router.generator,
-    home: routes.buildPage('follower_page', null), //把他作为默认页面
+    home: routes.buildPage('layout_page', null), //把他作为默认页面
     onGenerateRoute: (RouteSettings settings) {
       return MaterialPageRoute<Object>(builder: (BuildContext context) {
         return routes.buildPage(settings.name, settings.arguments);

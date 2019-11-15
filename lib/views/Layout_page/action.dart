@@ -13,7 +13,6 @@ class LayoutActionCreator {
   }
   //改变当前bottomNavigationBar的currentIndex
   static Action onChangeCurrentIndex(currentIndex){
-    print('--------------$currentIndex----------------');
     return Action(LayoutAction.changeCurrentIndex,payload:currentIndex);
   }
 }
