@@ -3,13 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:my_flutter/views/Git/Followers_page/page.dart';
 import 'package:my_flutter/views/layout_page/page.dart';
 import 'package:fish_redux/fish_redux.dart';
-
+import 'package:my_flutter/views/git_page/page.dart';
 
 Widget createApp() {
   final AbstractRoutes routes = PageRoutes(
     pages: <String, Page<Object, dynamic>>{
       'follower_page': FollowersPage(), //在这里添加页面
-      'layout_page': LayoutPage()
+      'layout_page': LayoutPage(),
+      'git_page':GitPage()
     },
   );
 

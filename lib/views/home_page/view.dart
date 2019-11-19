@@ -18,7 +18,8 @@ Widget buildView(HomeState state, Dispatch dispatch, ViewService viewService) {
             WeatherBox(
               loading: state.weatherLoading,
               weatherInfo: state.weatherInfo,
-            )
+            ),
+            ApplicationGrid()
           ],
         ),
       )
@@ -127,4 +128,139 @@ class WeatherBox extends StatelessWidget {
           ),
         ]));
   }
+}
+
+
+//应用列表
+class ApplicationGrid extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    var applications = [
+      {
+        'name': 'github',
+        'icon': IconData(0xe885, fontFamily: 'iconfont'),
+        'color': Colors.orange
+      },
+      {
+        'name': 'blog',
+        'icon': IconData(0xe8e8, fontFamily: 'iconfont'),
+        'color': Colors.green
+      },
+      {
+        'name': '快递查询',
+        'icon': IconData(0xe603, fontFamily: 'iconfont'),
+        'color': Colors.blue
+      },
+      {
+        'name': '音乐排行榜',
+        'icon': IconData(0xe600, fontFamily: 'iconfont'),
+        'color': Colors.redAccent
+      },
+      {
+        'name': '图片欣赏',
+        'icon': IconData(0xe716, fontFamily: 'iconfont'),
+        'color': Colors.blue
+      },
+      {
+        'name': '实时段子',
+        'icon': IconData(0xe607, fontFamily: 'iconfont'),
+        'color': Colors.orange
+      },
+      {
+        'name': '身份证识别',
+        'icon': IconData(0xe605, fontFamily: 'iconfont'),
+        'color': Colors.green
+      },
+      {
+        'name': 'Map',
+        'icon': IconData(0xe60a, fontFamily: 'iconfont'),
+        'color': Colors.orange
+      },
+      {
+        'name': '自定义',
+        'icon': IconData(0xe67e, fontFamily: 'iconfont'),
+        'color': Colors.red
+      },
+      {
+        'name': '扫一扫',
+        'icon': IconData(0xe60d, fontFamily: 'iconfont'),
+        'color': Colors.green
+      },
+      {
+        'name': '更多应用',
+        'icon': IconData(0xe792, fontFamily: 'iconfont'),
+        'color': Colors.blue
+      },
+    ];
+    return Container(
+        padding: EdgeInsets.only(left: 24, right: 24, top: 10),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Container(
+                padding: EdgeInsets.only(bottom: 20),
+                child: Text('功能应用',
+                    style: TextStyle(
+                        fontSize: setScreen(type: 'size', value: 25.0),
+                        fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.left)),
+            GridView.builder(
+              physics: NeverScrollableScrollPhysics(), //去除内部滚动
+              itemCount: applications.length,
+              shrinkWrap: true,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  //横轴元素个数
+                  crossAxisCount: 4,
+                  //纵轴间距
+                  mainAxisSpacing: 10.0,
+                  //横轴间距
+                  crossAxisSpacing: 10.0,
+                  //子组件宽高长度比例
+                  childAspectRatio: 1.0),
+              itemBuilder: (BuildContext context, int index) {
+                return Container(
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.white, width: 1)),
+                  child: _applicationItem(applications[index], context),
+                );
+              },
+            )
+          ],
+        ));
+  }
+}
+
+Widget _applicationItem(item, context) {
+  return Container(
+      child: InkWell(
+    onTap: () {
+      Navigator.of(context).pushNamed('git_page', arguments: null); //注意2
+      // PageRouter.router.navigateTo(context, "/git-repos");
+      // Navigator.pushNamed(context, "git");
+    },
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: <Widget>[
+        ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: Container(
+            child: Icon(
+              item['icon'],
+              color: Colors.white,
+              size: setScreen(type: 'size', value: 50),
+            ),
+            color: item['color'],
+            width: setScreen(type: 'w', value: 100.0),
+            height: setScreen(type: 'h', value: 100.0),
+          ),
+        ),
+        Container(
+          child: Text(
+            '${item['name']}',
+            style: TextStyle(fontSize: setScreen(type: 'size', value: 16)),
+          ),
+        )
+      ],
+    ),
+  ));
 }
