@@ -11,7 +11,7 @@ Effect<HomeState> buildEffect() {
 }
 void _init(Action action, Context<HomeState> ctx){
    
-    print('页面初始化加载');
+    print('home_page页面初始化加载');
     // ctx.dispatch()
 }
 void _onAction(Action action, Context<HomeState> ctx) {

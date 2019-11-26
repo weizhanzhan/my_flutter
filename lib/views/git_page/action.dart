@@ -1,10 +1,14 @@
 import 'package:fish_redux/fish_redux.dart';
+import 'package:flutter/material.dart' hide Action;
 
 //TODO replace with your own action
-enum GitAction { action }
+enum GitAction { init }
 
 class GitActionCreator {
-  static Action onAction() {
-    return const Action(GitAction.action);
+  static Action onInit(List<String>tags,TabController controller) {
+    return  Action(GitAction.init,payload: {
+      'tags':tags,
+      'controller':controller
+    });
   }
 }
