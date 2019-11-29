@@ -1,13 +1,13 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
-import 'package:my_flutter/utils/screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:my_flutter/utils/screen.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'action.dart';
 import 'state.dart';
 
 Widget buildView(HomeState state, Dispatch dispatch, ViewService viewService) {
-  ScreenUtil.instance =  ScreenUtil(width: 750, height: 1334, allowFontScaling: true)..init(viewService.context);
+
   return Scaffold(
     body: SafeArea(
       child: SingleChildScrollView(
@@ -15,6 +15,7 @@ Widget buildView(HomeState state, Dispatch dispatch, ViewService viewService) {
           children: <Widget>[
             HeaderTitle(),
             HeaderSwiper(),
+            Text(setScreen(type: 'size', value: 20).toString()),
             WeatherBox(
               loading: state.weatherLoading,
               weatherInfo: state.weatherInfo,
@@ -40,7 +41,7 @@ class HeaderTitle extends StatelessWidget {
           Text(
             'Learn and live!',
             style: TextStyle(
-              fontSize: setScreen(type: 'size', value: 25.0),
+              fontSize: setScreen(type: 'size', value: 35.0),
               fontWeight: FontWeight.bold
             ),
           ),
@@ -79,8 +80,8 @@ class HeaderSwiper extends StatelessWidget {
           );
         },
         itemCount: imgs.length,
-        viewportFraction: 0.8,
-        scale: 0.9,
+        // viewportFraction: 0.8,
+        // scale: 0.9,
         pagination: new SwiperPagination(),
       ),
     );
@@ -100,7 +101,7 @@ class WeatherBox extends StatelessWidget {
         // margin: EdgeInsets.fromLTRB(24, 12, 24, 0),
         padding: EdgeInsets.only(top: 10.0),
         child: Text('ε=( o｀ω′)ノ 正在加载...',
-            style: TextStyle(fontSize: setScreen(type: 'size', value: 18))),
+            style: TextStyle(fontSize: setScreen(type: 'size', value: 20))),
       );
     }
     if (weatherInfo == null) {
@@ -108,7 +109,7 @@ class WeatherBox extends StatelessWidget {
         // margin: EdgeInsets.fromLTRB(24, 12, 24, 0),
         padding: EdgeInsets.only(top: 10.0),
         child: Text('/(ㄒoㄒ)/~~ 暂无数据...',
-            style: TextStyle(fontSize: setScreen(type: 'size', value: 18))),
+            style: TextStyle(fontSize: setScreen(type: 'size', value: 20))),
       );
     }
     var now = weatherInfo['data']['forecast'][0];
@@ -124,7 +125,7 @@ class WeatherBox extends StatelessWidget {
           ),
           Text(
             '  ${now['date']} ${weatherInfo['data']['city']}   ${now['type']}   ${now['high']}   ${now['low']}',
-            style: TextStyle(fontSize: setScreen(type: 'size', value: 18)),
+            style: TextStyle(fontSize: setScreen(type: 'size', value: 20)),
           ),
         ]));
   }
@@ -201,7 +202,7 @@ class ApplicationGrid extends StatelessWidget {
                 padding: EdgeInsets.only(bottom: 20),
                 child: Text('功能应用',
                     style: TextStyle(
-                        fontSize: setScreen(type: 'size', value: 25.0),
+                        fontSize: setScreen(type: 'size', value: 35.0),
                         fontWeight: FontWeight.bold),
                     textAlign: TextAlign.left)),
             GridView.builder(
@@ -257,7 +258,7 @@ Widget _applicationItem(item, context) {
         Container(
           child: Text(
             '${item['name']}',
-            style: TextStyle(fontSize: setScreen(type: 'size', value: 16)),
+            style: TextStyle(fontSize: setScreen(type: 'size', value: 20)),
           ),
         )
       ],

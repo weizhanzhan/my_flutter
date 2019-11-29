@@ -11,6 +11,7 @@ Effect<GitState> buildEffect() {
 }
 void _init(dynamic action, Context<GitState> ctx){
   List<String> list = ['repos','events','followers','followering','info',];
+  //初始化tabbar
   TickerProvider tickerProvider = ctx.stfState as TickerProvider;
   TabController controller = TabController(length: list.length, vsync: tickerProvider);
   ctx.dispatch(GitActionCreator.onInit(list,controller));

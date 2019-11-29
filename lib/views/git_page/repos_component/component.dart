@@ -5,15 +5,15 @@ import 'reducer.dart';
 import 'state.dart';
 import 'view.dart';
 
-class FollowerListComponent extends Component<FollowerListState> {
-  FollowerListComponent()
+class ReposComponent extends Component<ReposState> {
+  ReposComponent()
       : super(
             effect: buildEffect(),
             reducer: buildReducer(),
             view: buildView,
-            dependencies: Dependencies<FollowerListState>(
+            dependencies: Dependencies<ReposState>(
                 adapter: null,
-                slots: <String, Dependent<FollowerListState>>{
+                slots: <String, Dependent<ReposState>>{
                 }),);
 
 }

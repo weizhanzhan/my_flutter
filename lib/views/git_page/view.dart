@@ -41,7 +41,7 @@ class _TabBarIndicatorBoxPainter extends BoxPainter {
 }
 
 
-Widget buildView(GitState state, Dispatch dispatch, ViewService viewService) {
+Widget buildView(GitState state, Dispatch dispatch, ViewService viewService)  {
  
   return Scaffold(
     appBar: AppBar(
