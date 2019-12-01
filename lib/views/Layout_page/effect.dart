@@ -13,7 +13,7 @@ Effect<LayoutState> buildEffect() {
   });
 }
 void _init(Action action, Context<LayoutState> ctx) {
-   ScreenUtil.instance =  ScreenUtil(width: 750, height: 1334, allowFontScaling: true)..init(ctx.context);
+  //  ScreenUtil.instance =  ScreenUtil(width: 750, height: 1334, allowFontScaling: true)..init(ctx.context);
 }
 void _onAction(Action action, Context<LayoutState> ctx) {}
 

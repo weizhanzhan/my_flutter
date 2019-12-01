@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_flutter/utils/request.dart';
 import 'package:my_flutter/utils/screen.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:my_flutter/router/page_router.dart';
+// import 'package:my_flutter/router/page_router.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -47,6 +48,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.instance =  ScreenUtil(width: 750, height: 1334, allowFontScaling: true)..init(context);
     return Scaffold(
         body: SafeArea(
             child: SingleChildScrollView(
@@ -267,7 +269,8 @@ Widget _applicationItem(item, context) {
   return Container(
       child: InkWell(
     onTap: () {
-      PageRouter.router.navigateTo(context, "/git-repos");
+       Navigator.of(context).pushNamed('git_page', arguments: null); //注意2
+      // PageRouter.router.navigateTo(context, "/git-repos");
       // Navigator.pushNamed(context, "git");
     },
     child: Column(

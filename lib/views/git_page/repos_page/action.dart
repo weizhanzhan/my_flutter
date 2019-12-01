@@ -6,9 +6,10 @@ enum ReposAction { action,init }
 
 class ReposActionCreator {
 
-  static Action onInit(list){
+  static Action onInit(list,isErr){
     return Action(ReposAction.init,payload: {
-      'list':list
+      'list':list,
+      'isErr':isErr
     });
   }
   static Action onAction() {

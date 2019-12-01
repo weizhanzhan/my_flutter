@@ -15,6 +15,7 @@ Reducer<ReposState> buildReducer() {
 ReposState _onInit(ReposState state, Action action) {
   final ReposState newState = state.clone();
   newState.list = action.payload['list'];
+  newState.isErr = action.payload['isErr'];
   return newState;
 }
 

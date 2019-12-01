@@ -12,8 +12,13 @@ Effect<ReposState> buildEffect() {
 
 void _init(Action action,Context<ReposState> ctx) async{
   print('git_repos页面初始化加载');
-  var list = await GitService.getGitRepos();
-   ctx.dispatch(ReposActionCreator.onInit(list));
+  try {
+     var list = await GitService.getGitRepos();
+   ctx.dispatch(ReposActionCreator.onInit(list,false));
+  } catch (e) {
+    ctx.dispatch(ReposActionCreator.onInit([],true));
+  }
+ 
 }
 void _onAction(Action action, Context<ReposState> ctx) {
 }

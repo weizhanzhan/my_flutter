@@ -35,6 +35,7 @@ Color switchColors(String type,BuildContext context){
 Widget buildView(ReposState state, Dispatch dispatch, ViewService viewService) {
  return Container(
       padding: EdgeInsets.fromLTRB(16, 0, 16, 0),
+      // child: Text(state.isErr.toString()),
       child:state.list.length>0?EasyRefresh.custom(
         header: BallPulseHeader(),
         footer: BallPulseFooter(),
