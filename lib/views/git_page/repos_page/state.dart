@@ -3,12 +3,14 @@ import 'package:my_flutter/models/git/repos.dart';
 
 class ReposState implements Cloneable<ReposState> {
   List<GitRepos> list = [];
-  bool isErr =false;
+  int page = 0;
+  int size = 10;
   @override
   ReposState clone() {
     return ReposState()
       ..list = list
-      ..isErr = isErr;
+      ..page= page
+      ..size = size;
   }
 }
 

@@ -80,13 +80,13 @@ class HeaderTitle extends StatelessWidget {
           Text(
             'Learn and live!',
             style: TextStyle(
-                fontSize: setScreen(type: 'size', value: 25.0),
+                fontSize: setScreen(type: 'size', value: 35.0),
                 fontWeight: FontWeight.bold),
           ),
           Row(
             children: <Widget>[
               Icon(IconData(0xe70a, fontFamily: 'iconfont'),
-                  size: setScreen(type: 'size', value: 35.0))
+                  size: setScreen(type: 'size', value: 45.0))
             ],
           )
         ],
@@ -117,6 +117,8 @@ class HeaderSwiper extends StatelessWidget {
           );
         },
         itemCount: imgs.length,
+         // viewportFraction: 0.8,
+        // scale: 0.9,//这个的效果是直接显示三个 中间的最大占主屏
         pagination: new SwiperPagination(),
       ),
     );
@@ -136,7 +138,7 @@ class WeatherBox extends StatelessWidget {
         // margin: EdgeInsets.fromLTRB(24, 12, 24, 0),
         padding: EdgeInsets.only(top: 10.0),
         child: Text('ε=( o｀ω′)ノ 正在加载...',
-            style: TextStyle(fontSize: setScreen(type: 'size', value: 18))),
+            style: TextStyle(fontSize: setScreen(type: 'size', value: 20))),
       );
     }
     if (weatherInfo == null) {
@@ -144,7 +146,7 @@ class WeatherBox extends StatelessWidget {
         // margin: EdgeInsets.fromLTRB(24, 12, 24, 0),
         padding: EdgeInsets.only(top: 10.0),
         child: Text('/(ㄒoㄒ)/~~ 暂无数据...',
-            style: TextStyle(fontSize: setScreen(type: 'size', value: 18))),
+            style: TextStyle(fontSize: setScreen(type: 'size', value: 20))),
       );
     }
     var now = weatherInfo['data']['forecast'][0];
@@ -160,7 +162,7 @@ class WeatherBox extends StatelessWidget {
           ),
           Text(
             '  ${now['date']} ${weatherInfo['data']['city']}   ${now['type']}   ${now['high']}   ${now['low']}',
-            style: TextStyle(fontSize: setScreen(type: 'size', value: 18)),
+            style: TextStyle(fontSize: setScreen(type: 'size', value: 20)),
           ),
         ]));
   }
@@ -236,7 +238,7 @@ class ApplicationGrid extends StatelessWidget {
                 padding: EdgeInsets.only(bottom: 20),
                 child: Text('功能应用',
                     style: TextStyle(
-                        fontSize: setScreen(type: 'size', value: 25.0),
+                        fontSize: setScreen(type: 'size', value: 35.0),
                         fontWeight: FontWeight.bold),
                     textAlign: TextAlign.left)),
             GridView.builder(
@@ -247,15 +249,15 @@ class ApplicationGrid extends StatelessWidget {
                   //横轴元素个数
                   crossAxisCount: 4,
                   //纵轴间距
-                  mainAxisSpacing: 20.0,
+                  mainAxisSpacing: 10.0,
                   //横轴间距
                   crossAxisSpacing: 10.0,
                   //子组件宽高长度比例
                   childAspectRatio: 1.0),
               itemBuilder: (BuildContext context, int index) {
                 return Container(
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.white, width: 1)),
+                  // decoration: BoxDecoration(
+                      // border: Border.all(color: Colors.white, width: 1)),
                   child: _applicationItem(applications[index], context),
                 );
               },
@@ -292,7 +294,7 @@ Widget _applicationItem(item, context) {
         Container(
           child: Text(
             '${item['name']}',
-            style: TextStyle(fontSize: setScreen(type: 'size', value: 16)),
+            style: TextStyle(fontSize: setScreen(type: 'size', value: 20)),
           ),
         )
       ],

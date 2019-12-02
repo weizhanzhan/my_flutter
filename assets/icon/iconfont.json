@@ -48,11 +48,32 @@
       "unicode_decimal": 59193
     },
     {
+      "icon_id": "593287",
+      "name": "info",
+      "font_class": "info",
+      "unicode": "e611",
+      "unicode_decimal": 58897
+    },
+    {
+      "icon_id": "785763",
+      "name": "星星",
+      "font_class": "star",
+      "unicode": "e638",
+      "unicode_decimal": 58936
+    },
+    {
       "icon_id": "1596781",
       "name": "down_light",
       "font_class": "down_light",
       "unicode": "e7ef",
       "unicode_decimal": 59375
+    },
+    {
+      "icon_id": "4359975",
+      "name": "fork",
+      "font_class": "fork",
+      "unicode": "e64e",
+      "unicode_decimal": 58958
     },
     {
       "icon_id": "4765728",

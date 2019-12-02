@@ -22,10 +22,10 @@ Widget buildView(
       items: <BottomNavigationBarItem>[
         BottomNavigationBarItem(
             icon: Icon(IconData(0xe792, fontFamily: 'iconfont')),
-            title: Text('Home')),
+            title: Text('Home',style: TextStyle(fontSize: 12),)),
         BottomNavigationBarItem(
             icon: Icon(IconData(0xe7ae, fontFamily: 'iconfont')),
-            title: Text('Account',)),
+            title: Text('Account',style: TextStyle(fontSize: 12))),
       ],
     ),
   );

@@ -6,8 +6,10 @@ import 'state.dart';
 Reducer<ReposState> buildReducer() {
   return asReducer(
     <Object, Reducer<ReposState>>{
-      ReposAction.action: _onAction,
-      ReposAction.init:_onInit
+  
+      ReposAction.init:_onInit,
+ 
+      ReposAction.fetchSuccess:_onFetchSuccess
     },
   );
 }
@@ -15,11 +17,17 @@ Reducer<ReposState> buildReducer() {
 ReposState _onInit(ReposState state, Action action) {
   final ReposState newState = state.clone();
   newState.list = action.payload['list'];
-  newState.isErr = action.payload['isErr'];
   return newState;
 }
 
-ReposState _onAction(ReposState state, Action action) {
+
+ReposState _onFetchSuccess(ReposState state, Action action) {
   final ReposState newState = state.clone();
+  newState.list = action.payload['list'];
+  if(action.payload['reset']) {
+    newState.page = 0;
+  } else {
+    newState.page ++;
+  }
   return newState;
 }

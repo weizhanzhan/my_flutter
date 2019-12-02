@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/ball_pulse_footer.dart';
 import 'package:flutter_easyrefresh/ball_pulse_header.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
-
+import 'package:my_flutter/utils/screen.dart';
 import 'package:my_flutter/components/loading.dart';
 import 'package:my_flutter/models/git/repos.dart';
 
@@ -33,46 +33,56 @@ Color switchColors(String type,BuildContext context){
   
 }
 Widget buildView(ReposState state, Dispatch dispatch, ViewService viewService) {
- return Container(
-      padding: EdgeInsets.fromLTRB(16, 0, 16, 0),
+    EasyRefreshController _controller = EasyRefreshController();
+    return Container(
+      // margin: EdgeInsets.fromLTRB(16, 0, 16, 0),
+    
       // child: Text(state.isErr.toString()),
       child:state.list.length>0?EasyRefresh.custom(
+        controller: _controller,
+        enableControlFinishRefresh: true,
+	      enableControlFinishLoad: true,
         header: BallPulseHeader(),
         footer: BallPulseFooter(),
         // child:  
         onRefresh: () async{
-        await Future.delayed(Duration(seconds: 2), () {
-           
+          dispatch(ReposActionCreator.onRefresh());
+          print(state.page);
+           await Future.delayed(Duration(seconds: 2), () {
+            _controller.finishRefresh(success: true);
           });
         },
         onLoad: () async {
-             await Future.delayed(Duration(seconds: 2), () {       
-          });
+            dispatch(ReposActionCreator.onFetch());
+           
+          //    await Future.delayed(Duration(seconds: 2), () {       
+          // });
         },
         slivers: <Widget>[
           SliverList(
             delegate: SliverChildBuilderDelegate((context, index) {
                 GitRepos item = state.list[index];
-                // return  ListTile(
-                //   title: Text(state.list[index].name),
-                //   subtitle: Text(
-                //     state.list[index].description.toString(),
-                //     maxLines: 2,
-                //     overflow: TextOverflow.ellipsis,
-                //   ),
-                //   leading: Icon(Icons.games),
-                // );
                 String language =( item.language == null)? '无':item.language;
+                Color fontColor = Colors.grey[600];
                 return Container(
+                    padding: EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        border: Border(bottom: BorderSide(width: 1,color: Colors.grey[300]))
+                      ),
                   // child: Image.network('https://avatars3.githubusercontent.com/u/32046397?v=4',width: 10.0,) ,
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                   
+                      Text(state.page.toString()),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
-                          Text(item.owner.login),
-                          // Image.network('https://avatars3.githubusercontent.com/u/32046397?v=4',width: 10.0,),
+                          Row(
+                            children: <Widget>[    
+                              Image.network('http://test1.zlpfs.com/timg.jpg',width:setScreen(type: 'w',value: 40),height:setScreen(type: 'w',value: 40),),
+                              Text('  ${item.owner.login}'),
+                            ],
+                          ),
                           Row(
                            children: <Widget>[
                             CircleType(color: switchColors(language, context)),
@@ -81,10 +91,27 @@ Widget buildView(ReposState state, Dispatch dispatch, ViewService viewService) {
                           )
                         ],
                       ),
-                       Container(
-                         
-                         child: Text(item.name,textAlign: TextAlign.left,),
-                       )
+                      Container(
+                        padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                        child: Text(item.name,style: TextStyle(fontSize: setScreen(type: 'size',value: 25),fontWeight: FontWeight.w500),),
+                      ),
+                      Container(
+                        child: Text(item.description !=null?item.description:'暂无描述信息',textAlign: TextAlign.left,style: TextStyle( color: fontColor,),),
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(top: 12),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Icon(IconData(0xe638, fontFamily: 'iconfont'),color: fontColor,size: setScreen(type: 'size',value: 25),), 
+                            Text(' ${item.stargazersCount}  ',style: TextStyle(fontSize: setScreen(type: 'size',value: 20),color: fontColor),),                 
+                            Icon(IconData(0xe611, fontFamily: 'iconfont'),color: fontColor,size: setScreen(type: 'size',value: 25),),
+                            Text(' ${item.openIssuesCount}  ',style: TextStyle(fontSize: setScreen(type: 'size',value: 20),color: fontColor),),   
+                            Icon(IconData(0xe64e, fontFamily: 'iconfont'),color: fontColor,size: setScreen(type: 'size',value: 25),),
+                            Text(' ${item.forksCount}  ',style: TextStyle(fontSize: setScreen(type: 'size',value: 20),color: fontColor),),   
+                          ],
+                        ),
+                      )
                     ],
                    
                   ),
