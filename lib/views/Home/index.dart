@@ -49,21 +49,23 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     ScreenUtil.instance =  ScreenUtil(width: 750, height: 1334, allowFontScaling: true)..init(context);
+  
     return Scaffold(
         body: SafeArea(
-            child: SingleChildScrollView(
-      child: Column(
-        children: <Widget>[
-          HeaderTitle(),
-          HeaderSwiper(),
-          WeatherBox(
-            weatherInfo: _weather,
-            loading: _weatherLoading,
+          child: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[ 
+ 
+                HeaderTitle(),
+                HeaderSwiper(),
+                WeatherBox( 
+                  weatherInfo: _weather,
+                  loading: _weatherLoading,
+                ),
+                ApplicationGrid(),
+              // _repos.length != 0 ? _bodyContext(_repos) : Text('空数组')
+            ],
           ),
-          ApplicationGrid(),
-          // _repos.length != 0 ? _bodyContext(_repos) : Text('空数组')
-        ],
-      ),
     )));
   }
 }
@@ -73,7 +75,7 @@ class HeaderTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.fromLTRB(24, 12, 24, 6),
+      padding: EdgeInsets.fromLTRB(12, 12, 12, 6),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
@@ -100,15 +102,16 @@ class HeaderSwiper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var imgs = [
-      'assets/img/banner1.jpg',
+      
       'assets/img/banner3.jpg',
+      'assets/img/banner1.jpg',
       'assets/img/banner4.jpg',
       'assets/img/banner5.jpg',
     ];
     return Container(
-      margin: EdgeInsets.fromLTRB(24, 12, 24, 6),
+      margin: EdgeInsets.fromLTRB(12, 12, 12, 6),
       width: double.infinity,
-      height: setScreen(type: 'h', value: 240),
+      height: setScreen(type: 'h', value: 300),
       child: new Swiper(
         itemBuilder: (BuildContext context, int index) {
           return ClipRRect(
@@ -119,7 +122,7 @@ class HeaderSwiper extends StatelessWidget {
         itemCount: imgs.length,
          // viewportFraction: 0.8,
         // scale: 0.9,//这个的效果是直接显示三个 中间的最大占主屏
-        pagination: new SwiperPagination(),
+        // pagination: new SwiperPagination(),
       ),
     );
   }
@@ -138,7 +141,7 @@ class WeatherBox extends StatelessWidget {
         // margin: EdgeInsets.fromLTRB(24, 12, 24, 0),
         padding: EdgeInsets.only(top: 10.0),
         child: Text('ε=( o｀ω′)ノ 正在加载...',
-            style: TextStyle(fontSize: setScreen(type: 'size', value: 20))),
+            style: TextStyle(fontSize: setScreen(type: 'size', value: 25))),
       );
     }
     if (weatherInfo == null) {
@@ -146,7 +149,7 @@ class WeatherBox extends StatelessWidget {
         // margin: EdgeInsets.fromLTRB(24, 12, 24, 0),
         padding: EdgeInsets.only(top: 10.0),
         child: Text('/(ㄒoㄒ)/~~ 暂无数据...',
-            style: TextStyle(fontSize: setScreen(type: 'size', value: 20))),
+            style: TextStyle(fontSize: setScreen(type: 'size', value: 25))),
       );
     }
     var now = weatherInfo['data']['forecast'][0];
@@ -162,7 +165,7 @@ class WeatherBox extends StatelessWidget {
           ),
           Text(
             '  ${now['date']} ${weatherInfo['data']['city']}   ${now['type']}   ${now['high']}   ${now['low']}',
-            style: TextStyle(fontSize: setScreen(type: 'size', value: 20)),
+            style: TextStyle(fontSize: setScreen(type: 'size', value: 25)),
           ),
         ]));
   }
@@ -230,7 +233,7 @@ class ApplicationGrid extends StatelessWidget {
       },
     ];
     return Container(
-        padding: EdgeInsets.only(left: 24, right: 24, top: 10),
+        padding: EdgeInsets.only(left: 12, right: 12, top: 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -294,7 +297,7 @@ Widget _applicationItem(item, context) {
         Container(
           child: Text(
             '${item['name']}',
-            style: TextStyle(fontSize: setScreen(type: 'size', value: 20)),
+            style: TextStyle(fontSize: setScreen(type: 'size', value: 25)),
           ),
         )
       ],
@@ -323,4 +326,50 @@ Widget _bodyContext(repos) {
           );
         },
       ));
+}
+
+
+class LoadingDialog extends Dialog {
+  String text;
+
+  LoadingDialog({Key key, @required this.text}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return new Material( //创建透明层
+      type: MaterialType.transparency, //透明类型
+      child: new Center( //保证控件居中效果
+        child: new SizedBox(
+          width: 120.0,
+          height: 120.0,
+          child: new Container(
+            decoration: ShapeDecoration(
+              color: Color(0xffffffff),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8.0),
+                ),
+              ),
+            ),
+            child: new Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                new CircularProgressIndicator(),
+                new Padding(
+                  padding: const EdgeInsets.only(
+                    top: 20.0,
+                  ),
+                  child: new Text(
+                    text,
+                    style: new TextStyle(fontSize: 12.0),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 }

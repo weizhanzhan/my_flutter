@@ -25,7 +25,7 @@ ReposState _onFetchSuccess(ReposState state, Action action) {
   final ReposState newState = state.clone();
   newState.list = action.payload['list'];
   if(action.payload['reset']) {
-    newState.page = 0;
+    newState.page = 1;
   } else {
     newState.page ++;
   }

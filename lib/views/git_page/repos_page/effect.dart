@@ -17,11 +17,23 @@ void _init(Action action,Context<ReposState> ctx) async{
 }
 void _onFetch(Action action, Context<ReposState> ctx) async{
   if(action.payload['reset']){
-    var list = await GitService.getGitRepos(page: 0,size:ctx.state.size);
+    var list = await GitService.getGitRepos(page: 1,size:ctx.state.size);
+    ctx.state.refreshController.refreshCompleted();
+    ctx.state.refreshController.resetNoData();
     ctx.dispatch(ReposActionCreator.onFetchSuccess(list,reset: true));
   }else{
+    print('执行');
     var list = await GitService.getGitRepos(page: ctx.state.page,size:ctx.state.size);
-    ctx.dispatch(ReposActionCreator.onFetchSuccess(list));
+    List allList = ctx.state.list;
+    allList.addAll(list);
+    if(list.length<ctx.state.size){
+      ctx.state.refreshController.loadNoData();
+    }else{
+      ctx.state.refreshController.loadComplete();
+      ctx.dispatch(ReposActionCreator.onFetchSuccess(allList));
+    }
+  
+ 
   }
   
 }
