@@ -15,3 +15,7 @@ setScreen({String type, double value, contxt}) {
       return value;
   }
 }
+
+getScreenWidth(){
+  return ScreenUtil.screenWidth ;
+}

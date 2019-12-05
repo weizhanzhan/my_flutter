@@ -11,4 +11,13 @@ class GitService{
      });
     return res;
   }
+  static Future getGitEvent({page,size}) async{
+    print(page);
+    Response response = await HttpUtil().dio.get("/users/weizhanzhan/repos?page=$page&per_page=$size");
+     List<GitRepos> res = [];
+     response.data.forEach((item){
+       res.add(GitRepos.fromJson(item));
+     });
+    return res;
+  }
 }

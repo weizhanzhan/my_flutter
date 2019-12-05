@@ -51,6 +51,7 @@ class _HomePageState extends State<HomePage> {
     ScreenUtil.instance =  ScreenUtil(width: 750, height: 1334, allowFontScaling: true)..init(context);
   
     return Scaffold(
+       backgroundColor: Colors.white,//Color(0xFFF2F3F8),
         body: SafeArea(
           child: SingleChildScrollView(
             child: Column(
@@ -62,6 +63,7 @@ class _HomePageState extends State<HomePage> {
                   weatherInfo: _weather,
                   loading: _weatherLoading,
                 ),
+                DirverLine(),
                 ApplicationGrid(),
               // _repos.length != 0 ? _bodyContext(_repos) : Text('空数组')
             ],
@@ -69,21 +71,46 @@ class _HomePageState extends State<HomePage> {
     )));
   }
 }
+// 隔断线
 
+class DirverLine extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return 
+       Container(
+         margin: EdgeInsets.only(top: 20),
+         width: getScreenWidth(),
+         height: setScreen(type:'h',value:20),
+         decoration: BoxDecoration(
+           color: Color.fromRGBO(246, 246, 246, 1),
+         ),
+         
+         
+     
+    );
+  }
+}
 // 头部标题
 class HeaderTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.fromLTRB(12, 12, 12, 6),
+      padding: EdgeInsets.fromLTRB(24, 24, 24, 24),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Text(
-            'Learn and live!',
-            style: TextStyle(
-                fontSize: setScreen(type: 'size', value: 35.0),
-                fontWeight: FontWeight.bold),
+            'Hi，早上好',
+             style: TextStyle(
+                fontFamily: 'Roboto',
+                fontWeight: FontWeight.w500,
+                fontSize: setScreen(type: 'size', value: 32.0),
+                letterSpacing: 0.5,
+                color:Colors.black// Color(0xFF4A6572),
+              ),
+            // style: TextStyle(
+            //     fontSize: setScreen(type: 'size', value: 35.0),
+            //     fontWeight: FontWeight.bold),
           ),
           Row(
             children: <Widget>[
@@ -102,16 +129,17 @@ class HeaderSwiper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var imgs = [
-      
-      'assets/img/banner3.jpg',
       'assets/img/banner1.jpg',
+      'assets/img/b6.jpg',
+      'assets/img/banner3.jpg',
+      
       'assets/img/banner4.jpg',
       'assets/img/banner5.jpg',
     ];
     return Container(
-      margin: EdgeInsets.fromLTRB(12, 12, 12, 6),
+      margin: EdgeInsets.fromLTRB(24,24, 24,24),
       width: double.infinity,
-      height: setScreen(type: 'h', value: 300),
+      height: setScreen(type: 'h', value: 250),
       child: new Swiper(
         itemBuilder: (BuildContext context, int index) {
           return ClipRRect(
