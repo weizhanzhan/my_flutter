@@ -19,3 +19,6 @@ setScreen({String type, double value, contxt}) {
 getScreenWidth(){
   return ScreenUtil.screenWidth ;
 }
+getStatusBarHeight(){//获取状态栏高度
+  return ScreenUtil.statusBarHeight;
+}

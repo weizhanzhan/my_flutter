@@ -4,7 +4,7 @@ import 'package:my_flutter/utils/request.dart';
 import 'package:my_flutter/utils/screen.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 // import 'package:my_flutter/router/page_router.dart';
-
+double paddingFR = setScreen(type: 'w',value: 34);
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -52,7 +52,8 @@ class _HomePageState extends State<HomePage> {
   
     return Scaffold(
        backgroundColor: Colors.white,//Color(0xFFF2F3F8),
-        body: SafeArea(
+        body: Container(
+          margin: EdgeInsets.only(top: getStatusBarHeight()),
           child: SingleChildScrollView(
             child: Column(
               children: <Widget>[ 
@@ -94,8 +95,10 @@ class DirverLine extends StatelessWidget {
 class HeaderTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    
+    double paddingTB = setScreen(type: 'w',value: 28);
     return Container(
-      padding: EdgeInsets.fromLTRB(24, 24, 24, 24),
+      padding: EdgeInsets.fromLTRB(paddingFR,  setScreen(type: 'w',value: 30), paddingFR, paddingTB),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
@@ -136,11 +139,7 @@ class HeaderSwiper extends StatelessWidget {
       'assets/img/banner4.jpg',
       'assets/img/banner5.jpg',
     ];
-    return Container(
-      margin: EdgeInsets.fromLTRB(24,24, 24,24),
-      width: double.infinity,
-      height: setScreen(type: 'h', value: 250),
-      child: new Swiper(
+    Swiper _swiper =  new Swiper(
         itemBuilder: (BuildContext context, int index) {
           return ClipRRect(
             child: Image.asset(imgs[index], fit: BoxFit.cover),
@@ -148,10 +147,19 @@ class HeaderSwiper extends StatelessWidget {
           );
         },
         itemCount: imgs.length,
+        onTap: (test){
+          print('我是第$test');
+        },
          // viewportFraction: 0.8,
         // scale: 0.9,//这个的效果是直接显示三个 中间的最大占主屏
         // pagination: new SwiperPagination(),
-      ),
+      );
+      _swiper.onTap(10);
+    return Container(
+      margin: EdgeInsets.fromLTRB(paddingFR,setScreen(type: 'size', value: 24.0), paddingFR,setScreen(type: 'size', value: 24.0)),
+      width: double.infinity,
+      height: setScreen(type: 'h', value: 250),
+      child:_swiper
     );
   }
 }
@@ -261,12 +269,12 @@ class ApplicationGrid extends StatelessWidget {
       },
     ];
     return Container(
-        padding: EdgeInsets.only(left: 12, right: 12, top: 10),
+        padding: EdgeInsets.only(left: paddingFR, right: paddingFR, top: 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Container(
-                padding: EdgeInsets.only(bottom: 20),
+      
                 child: Text('功能应用',
                     style: TextStyle(
                         fontSize: setScreen(type: 'size', value: 35.0),
