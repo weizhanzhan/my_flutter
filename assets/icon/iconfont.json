@@ -55,6 +55,13 @@
       "unicode_decimal": 58897
     },
     {
+      "icon_id": "720977",
+      "name": "坐标",
+      "font_class": "xiazai19",
+      "unicode": "e618",
+      "unicode_decimal": 58904
+    },
+    {
       "icon_id": "785763",
       "name": "星星",
       "font_class": "star",
@@ -67,6 +74,55 @@
       "font_class": "down_light",
       "unicode": "e7ef",
       "unicode_decimal": 59375
+    },
+    {
+      "icon_id": "1692030",
+      "name": "bug",
+      "font_class": "bug",
+      "unicode": "e612",
+      "unicode_decimal": 58898
+    },
+    {
+      "icon_id": "1898828",
+      "name": "html5",
+      "font_class": "html",
+      "unicode": "e6bb",
+      "unicode_decimal": 59067
+    },
+    {
+      "icon_id": "2823684",
+      "name": "坐标",
+      "font_class": "zuobiao",
+      "unicode": "e65c",
+      "unicode_decimal": 58972
+    },
+    {
+      "icon_id": "3703072",
+      "name": "微信",
+      "font_class": "weixin",
+      "unicode": "e615",
+      "unicode_decimal": 58901
+    },
+    {
+      "icon_id": "3876070",
+      "name": "csswizardry",
+      "font_class": "csswizardry",
+      "unicode": "e613",
+      "unicode_decimal": 58899
+    },
+    {
+      "icon_id": "3876214",
+      "name": "html5",
+      "font_class": "html1",
+      "unicode": "e621",
+      "unicode_decimal": 58913
+    },
+    {
+      "icon_id": "3970670",
+      "name": "JavaScript",
+      "font_class": "JavaScript",
+      "unicode": "e704",
+      "unicode_decimal": 59140
     },
     {
       "icon_id": "4359975",
@@ -314,6 +370,41 @@
       "unicode_decimal": 59525
     },
     {
+      "icon_id": "5618155",
+      "name": "CSS",
+      "font_class": "CSS",
+      "unicode": "e61d",
+      "unicode_decimal": 58909
+    },
+    {
+      "icon_id": "5634814",
+      "name": "react",
+      "font_class": "react",
+      "unicode": "f21a",
+      "unicode_decimal": 61978
+    },
+    {
+      "icon_id": "5634901",
+      "name": "vuejs",
+      "font_class": "vuejs",
+      "unicode": "f25f",
+      "unicode_decimal": 62047
+    },
+    {
+      "icon_id": "6496026",
+      "name": "Vue",
+      "font_class": "Vue",
+      "unicode": "e799",
+      "unicode_decimal": 59289
+    },
+    {
+      "icon_id": "6496027",
+      "name": "React",
+      "font_class": "React",
+      "unicode": "e79a",
+      "unicode_decimal": 59290
+    },
+    {
       "icon_id": "6598316",
       "name": "comment",
       "font_class": "comment",
@@ -347,6 +438,20 @@
       "font_class": "video1",
       "unicode": "e73b",
       "unicode_decimal": 59195
+    },
+    {
+      "icon_id": "7473397",
+      "name": "github",
+      "font_class": "git",
+      "unicode": "e616",
+      "unicode_decimal": 58902
+    },
+    {
+      "icon_id": "9271689",
+      "name": "file_type_flutter",
+      "font_class": "file_type_flutter",
+      "unicode": "e683",
+      "unicode_decimal": 59011
     },
     {
       "icon_id": "9358592",
@@ -466,6 +571,62 @@
       "font_class": "vip-card-o",
       "unicode": "e610",
       "unicode_decimal": 58896
+    },
+    {
+      "icon_id": "9983515",
+      "name": "总结",
+      "font_class": "zongjie",
+      "unicode": "e630",
+      "unicode_decimal": 58928
+    },
+    {
+      "icon_id": "10140597",
+      "name": "QQ",
+      "font_class": "QQ",
+      "unicode": "e793",
+      "unicode_decimal": 59283
+    },
+    {
+      "icon_id": "10263864",
+      "name": "Flutter",
+      "font_class": "Flutter",
+      "unicode": "f55a",
+      "unicode_decimal": 62810
+    },
+    {
+      "icon_id": "10464645",
+      "name": "点赞",
+      "font_class": "diancai1-copy",
+      "unicode": "e617",
+      "unicode_decimal": 58903
+    },
+    {
+      "icon_id": "10784853",
+      "name": "bxl-javascript",
+      "font_class": "bxl-javascript",
+      "unicode": "e6e7",
+      "unicode_decimal": 59111
+    },
+    {
+      "icon_id": "11155424",
+      "name": "flutter",
+      "font_class": "flutter",
+      "unicode": "e614",
+      "unicode_decimal": 58900
+    },
+    {
+      "icon_id": "12470774",
+      "name": "csswizardry",
+      "font_class": "csswizardry-copy",
+      "unicode": "f55b",
+      "unicode_decimal": 62811
+    },
+    {
+      "icon_id": "12470776",
+      "name": "html5",
+      "font_class": "html1-copy",
+      "unicode": "f55c",
+      "unicode_decimal": 62812
     }
   ]
 }

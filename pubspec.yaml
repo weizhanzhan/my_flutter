@@ -54,6 +54,8 @@ flutter:
     - assets/img/banner4.jpg
     - assets/img/banner5.jpg
     - assets/img/b6.jpg
+    - assets/img/b1.jpg
+    - assets/img/avatar.jpg
   fonts:
     - family: iconfont
       fonts:

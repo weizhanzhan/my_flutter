@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:my_flutter/components/DirverLine.dart';
 import 'package:my_flutter/utils/request.dart';
 import 'package:my_flutter/utils/screen.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
@@ -11,40 +12,40 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List _repos = [];
-  bool _weatherLoading = false;
-  Object _weather;
+  // List _repos = [];
+  // bool _weatherLoading = false;
+  // Object _weather;
 
   @override
   void initState() {
     super.initState();
-    _getReposData();
-    _getWeatherData();
+    // _getReposData();
+    // _getWeatherData();
   }
 
-  _getReposData() {
-    getRepos().then((repos) {
-      setState(() {
-        _repos = repos.data;
-      });
-    });
-  }
+  // _getReposData() {
+  //   getRepos().then((repos) {
+  //     setState(() {
+  //       _repos = repos.data;
+  //     });
+  //   });
+  // }
 
-  _getWeatherData() {
-    setState(() {
-      _weatherLoading = true;
-    });
-    getWeather().then((weather) {
-      setState(() {
-        _weatherLoading = false;
-        _weather = weather.data;
-      });
-    }).catchError((e) {
-      setState(() {
-        _weatherLoading = false;
-      });
-    });
-  }
+  // _getWeatherData() {
+  //   setState(() {
+  //     _weatherLoading = true;
+  //   });
+  //   getWeather().then((weather) {
+  //     setState(() {
+  //       _weatherLoading = false;
+  //       _weather = weather.data;
+  //     });
+  //   }).catchError((e) {
+  //     setState(() {
+  //       _weatherLoading = false;
+  //     });
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -60,11 +61,11 @@ class _HomePageState extends State<HomePage> {
  
                 HeaderTitle(),
                 HeaderSwiper(),
-                WeatherBox( 
-                  weatherInfo: _weather,
-                  loading: _weatherLoading,
-                ),
-                DirverLine(),
+                // WeatherBox( 
+                //   weatherInfo: _weather,
+                //   loading: _weatherLoading,
+                // ),
+                DirverLine(marginTop: 20,),
                 ApplicationGrid(),
               // _repos.length != 0 ? _bodyContext(_repos) : Text('空数组')
             ],
@@ -72,25 +73,7 @@ class _HomePageState extends State<HomePage> {
     )));
   }
 }
-// 隔断线
 
-class DirverLine extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return 
-       Container(
-         margin: EdgeInsets.only(top: 20),
-         width: getScreenWidth(),
-         height: setScreen(type:'h',value:20),
-         decoration: BoxDecoration(
-           color: Color.fromRGBO(246, 246, 246, 1),
-         ),
-         
-         
-     
-    );
-  }
-}
 // 头部标题
 class HeaderTitle extends StatelessWidget {
   @override
@@ -111,14 +94,18 @@ class HeaderTitle extends StatelessWidget {
                 letterSpacing: 0.5,
                 color:Colors.black// Color(0xFF4A6572),
               ),
-            // style: TextStyle(
-            //     fontSize: setScreen(type: 'size', value: 35.0),
-            //     fontWeight: FontWeight.bold),
           ),
           Row(
             children: <Widget>[
-              Icon(IconData(0xe70a, fontFamily: 'iconfont'),
-                  size: setScreen(type: 'size', value: 45.0))
+              Icon(IconData(0xe65c, fontFamily: 'iconfont'), size: setScreen(type: 'size', value: 45.0)),
+              Text(' 常州市', 
+                style: TextStyle(
+                  fontFamily: 'Roboto',
+                  fontWeight: FontWeight.w500,
+                  fontSize: setScreen(type: 'size', value: 32.0),
+                  letterSpacing: 0.5,
+                  color:Colors.black// Color(0xFF4A6572),
+              ))
             ],
           )
         ],
@@ -132,10 +119,10 @@ class HeaderSwiper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var imgs = [
+      'assets/img/b1.jpg',
       'assets/img/banner1.jpg',
       'assets/img/b6.jpg',
-      'assets/img/banner3.jpg',
-      
+      'assets/img/banner3.jpg', 
       'assets/img/banner4.jpg',
       'assets/img/banner5.jpg',
     ];
@@ -143,7 +130,7 @@ class HeaderSwiper extends StatelessWidget {
         itemBuilder: (BuildContext context, int index) {
           return ClipRRect(
             child: Image.asset(imgs[index], fit: BoxFit.cover),
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(0),//圆角 这里先设置为0
           );
         },
         itemCount: imgs.length,
@@ -154,11 +141,11 @@ class HeaderSwiper extends StatelessWidget {
         // scale: 0.9,//这个的效果是直接显示三个 中间的最大占主屏
         // pagination: new SwiperPagination(),
       );
-      _swiper.onTap(10);
+     
     return Container(
-      margin: EdgeInsets.fromLTRB(paddingFR,setScreen(type: 'size', value: 24.0), paddingFR,setScreen(type: 'size', value: 24.0)),
+      // margin: EdgeInsets.fromLTRB(paddingFR,setScreen(type: 'size', value: 24.0), paddingFR,setScreen(type: 'size', value: 24.0)),
       width: double.infinity,
-      height: setScreen(type: 'h', value: 250),
+      height: setScreen(type: 'w', value: 300),
       child:_swiper
     );
   }
@@ -269,17 +256,11 @@ class ApplicationGrid extends StatelessWidget {
       },
     ];
     return Container(
-        padding: EdgeInsets.only(left: paddingFR, right: paddingFR, top: 10),
+        padding: EdgeInsets.only(left: paddingFR, right: paddingFR, top: setScreen(type: 'w',value: 20)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Container(
-      
-                child: Text('功能应用',
-                    style: TextStyle(
-                        fontSize: setScreen(type: 'size', value: 35.0),
-                        fontWeight: FontWeight.bold),
-                    textAlign: TextAlign.left)),
+            Container(  child: Text('功能应用',  style: TextStyle( fontSize: setScreen(type: 'size', value: 35.0), fontWeight: FontWeight.bold),  textAlign: TextAlign.left)),
             GridView.builder(
               physics: NeverScrollableScrollPhysics(), //去除内部滚动
               itemCount: applications.length,
@@ -295,8 +276,6 @@ class ApplicationGrid extends StatelessWidget {
                   childAspectRatio: 1.0),
               itemBuilder: (BuildContext context, int index) {
                 return Container(
-                  // decoration: BoxDecoration(
-                      // border: Border.all(color: Colors.white, width: 1)),
                   child: _applicationItem(applications[index], context),
                 );
               },
@@ -327,7 +306,7 @@ Widget _applicationItem(item, context) {
             ),
             color: item['color'],
             width: setScreen(type: 'w', value: 100.0),
-            height: setScreen(type: 'h', value: 100.0),
+            height: setScreen(type: 'w', value: 100.0),
           ),
         ),
         Container(
