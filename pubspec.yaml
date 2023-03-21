@@ -20,7 +20,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_screenutil: ^0.6.0
-  dio: ^3.0.0
+  dio: ">=3.0.0 <6.0.0"
   flutter_swiper: ^1.1.6
   fluro: "^1.5.1"
   fish_redux: "^0.2.8"
